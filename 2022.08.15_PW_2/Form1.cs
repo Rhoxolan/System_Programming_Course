@@ -24,11 +24,10 @@ namespace _2022._08._15_PW_2
         {
             //processes.Add(Process.Start("notepad.exe"));
 
-            MyProcess process = new MyProcess();
+            MyProcess process = new();
             process.StartInfo = new ProcessStartInfo("notepad.exe");
             process.Start();
             processes.Add(process);
-            MessageBox.Show(process.ToString());
         }
 
         private void buttonRunCalculator_Click(object sender, EventArgs e)
