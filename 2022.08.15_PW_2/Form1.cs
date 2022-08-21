@@ -6,8 +6,7 @@ namespace _2022._08._15_PW_2
 
     public partial class Form1 : Form
     {
-
-        BindingList<MyProcess> processes;
+        BindingList<Process> processes;
 
         public Form1()
         {
@@ -18,31 +17,27 @@ namespace _2022._08._15_PW_2
         private void Form1_Load(object sender, EventArgs e)
         {
             listBox1.DataSource = processes;
+            listBox1.DisplayMember = "ProcessName";
         }
 
         private void buttonRunNotepad_Click(object sender, EventArgs e)
         {
-            //processes.Add(Process.Start("notepad.exe"));
-
-            MyProcess process = new();
-            process.StartInfo = new ProcessStartInfo("notepad.exe");
-            process.Start();
-            processes.Add(process);
+            processes.Add(Process.Start("notepad.exe"));
         }
 
         private void buttonRunCalculator_Click(object sender, EventArgs e)
         {
-            //processes.Add(Process.Start("calc.exe"));
+            processes.Add(Process.Start("calc.exe"));
         }
 
         private void buttonRunPaint_Click(object sender, EventArgs e)
         {
-            //processes.Add(Process.Start("mspaint.exe"));
+            processes.Add(Process.Start("mspaint.exe"));
         }
 
         private void buttonRunSCSCalc_Click(object sender, EventArgs e)
         {
-            //processes.Add(Process.Start("SCS-Calc.exe"));
+            processes.Add(Process.Start("SCS-Calc.exe"));
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -53,14 +48,6 @@ namespace _2022._08._15_PW_2
                 processes[listBox1.SelectedIndex].Close();
                 processes.RemoveAt(listBox1.SelectedIndex);
             }
-        }
-    }
-
-    public class MyProcess : Process
-    {
-        public override string ToString()
-        {
-            return this.ProcessName;
         }
     }
 }
