@@ -54,6 +54,7 @@
             this.buttonRunCalculator.TabIndex = 1;
             this.buttonRunCalculator.Text = "Run Calculator";
             this.buttonRunCalculator.UseVisualStyleBackColor = true;
+            this.buttonRunCalculator.Click += new System.EventHandler(this.buttonRunCalculator_Click);
             // 
             // buttonRunPaint
             // 
@@ -63,6 +64,7 @@
             this.buttonRunPaint.TabIndex = 2;
             this.buttonRunPaint.Text = "Run Paint";
             this.buttonRunPaint.UseVisualStyleBackColor = true;
+            this.buttonRunPaint.Click += new System.EventHandler(this.buttonRunPaint_Click);
             // 
             // buttonRunSCSCalc
             // 
@@ -72,6 +74,7 @@
             this.buttonRunSCSCalc.TabIndex = 3;
             this.buttonRunSCSCalc.Text = "Run SCS-Calc";
             this.buttonRunSCSCalc.UseVisualStyleBackColor = true;
+            this.buttonRunSCSCalc.Click += new System.EventHandler(this.buttonRunSCSCalc_Click);
             // 
             // listBox1
             // 
@@ -90,6 +93,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Close";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 

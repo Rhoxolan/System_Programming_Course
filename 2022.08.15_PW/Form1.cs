@@ -67,8 +67,8 @@ namespace _2022._08._15_PW
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(listView1.SelectedItems[0].Text);
-            Process.GetProcessById(Convert.ToInt32(listView1.SelectedItems[0].Text)).Kill();
+            Process.GetProcessById(Convert.ToInt32(listView1.SelectedItems[0].Text)).CloseMainWindow();
+            Process.GetProcessById(Convert.ToInt32(listView1.SelectedItems[0].Text)).Close();
         }
     }
 }
