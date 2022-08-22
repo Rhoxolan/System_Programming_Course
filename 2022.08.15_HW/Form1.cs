@@ -20,5 +20,13 @@ namespace _2022._08._15_HW
         {
             process = Process.Start(new ProcessStartInfo(textBox1.Text, $"{numericUpDown1.Value} {comboBox1.Text} {numericUpDown2.Value}"));
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            process.CloseMainWindow();
+            process.Close();
+
+            //Ты тут. Реализовать вывод сообщения с кодом закрытия, узнать как можно отследить завершение процесса, может через событие, либо попросту ждать пока приложение не закроется. 
+        }
     }
 }
