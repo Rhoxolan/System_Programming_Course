@@ -16,17 +16,24 @@ namespace _2022._08._15_HW
             comboBox1.SelectedIndex = 0;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            process = Process.Start(new ProcessStartInfo(textBox1.Text, $"{numericUpDown1.Value} {comboBox1.Text} {numericUpDown2.Value}"));
+            using (process = Process.Start(new ProcessStartInfo(textBox1.Text, $"{numericUpDown1.Value} {comboBox1.Text} {numericUpDown2.Value}")))
+            {
+                await process.WaitForExitAsync();
+                MessageBox.Show($"Process exit code: {process.ExitCode}");
+            }
+            process = null;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            process.CloseMainWindow();
-            process.Close();
-
-            //Ты тут. Реализовать вывод сообщения с кодом закрытия, узнать как можно отследить завершение процесса, может через событие, либо попросту ждать пока приложение не закроется. 
+            if (process != null)
+            {
+                process.CloseMainWindow();
+                process.Close();
+                process = null;
+            }
         }
     }
 }
