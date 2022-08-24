@@ -52,11 +52,15 @@ namespace _2022._08._17_PW
                         TreeNode node = new($"{process.ProcessName} [{process.Id}], parent - {pair.Value}]");
                         foreach (var pair2 in processesDictionary)
                         {
-                            Process childProcess = Process.GetProcessById(pair2.Key);
-                            if (pair2.Value == pair.Key)
+                            try
                             {
-                                node.Nodes.Add($"{childProcess.ProcessName} [{childProcess.Id}], parent - {process.ProcessName} [{process.Id}]");
+                                if (pair2.Value == pair.Key)
+                                {
+                                    Process childProcess = Process.GetProcessById(pair2.Key);
+                                    node.Nodes.Add($"{childProcess.ProcessName} [{childProcess.Id}], parent - {process.ProcessName} [{process.Id}]");
+                                }
                             }
+                            catch { }
                         }
                         treeView1.Nodes.Add(node);
                     }
