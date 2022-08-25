@@ -16,11 +16,13 @@
                 }
                 else if (t > 3)
                 {
-
+                    Task4();
+                    AnyKey();
                 }
                 else if (t > 2)
                 {
-
+                    Task3();
+                    AnyKey();
                 }
                 else if (t > 1)
                 {
@@ -74,6 +76,48 @@
             {
                 Console.WriteLine($"Задание 2, поток {Thread.CurrentThread.ManagedThreadId}, число {i}");
             }
+        }
+
+        //Задание 3
+        static void Task3()
+        {
+            Console.WriteLine("Пожалуйста, введите к-во потоков (1-100)");
+            int count = NumberInput(1, 100);
+            Console.Write('\n'.ToString());
+            List<Thread> threads = new();
+            for(int i = 0; i < count; i++)
+            {
+                threads.Add(new Thread(() => { Console.WriteLine($"Сообщение из потока {Thread.CurrentThread.ManagedThreadId}"); }));
+            }
+            foreach (Thread thread in threads)
+            {
+                thread.Start();
+            }
+        }
+
+        //Задание 4
+        static void Task4()
+        {
+            List<int> numbers = new();
+            Random random = new();
+            for (int i = 0; i < 100000; i++)
+            {
+                numbers.Add(random.Next(0,100000));
+            }
+            Thread serachMinThread = new((object obj) => {
+                Console.WriteLine($"Сообщение из потока \"{Thread.CurrentThread.Name}\", ищем минимум - {(obj as List<int>).Min()}");
+            }) { Name = "Поток поиска минимума" };
+            Thread serachMaxThread = new((object obj) => {
+                Console.WriteLine($"Сообщение из потока \"{Thread.CurrentThread.Name}\", ищем максимум - {(obj as List<int>).Max()}");
+            })
+            { Name = "Поток поиска максимума" };
+            Thread serachAvgThread = new((object obj) => {
+                Console.WriteLine($"Сообщение из потока \"{Thread.CurrentThread.Name}\", ищем среднее число - {(obj as List<int>).Average()}");
+            })
+            { Name = "Поток поиска среднего числа" };
+            serachMinThread.Start(numbers);
+            serachMaxThread.Start(numbers);
+            serachAvgThread.Start(numbers);
         }
 
         static void AnyKey()
