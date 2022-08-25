@@ -109,15 +109,19 @@
             }) { Name = "Поток поиска минимума" };
             Thread serachMaxThread = new((object obj) => {
                 Console.WriteLine($"Сообщение из потока \"{Thread.CurrentThread.Name}\", ищем максимум - {(obj as List<int>).Max()}");
-            })
-            { Name = "Поток поиска максимума" };
+            }) { Name = "Поток поиска максимума" };
             Thread serachAvgThread = new((object obj) => {
                 Console.WriteLine($"Сообщение из потока \"{Thread.CurrentThread.Name}\", ищем среднее число - {(obj as List<int>).Average()}");
-            })
-            { Name = "Поток поиска среднего числа" };
+            }) { Name = "Поток поиска среднего числа" };
             serachMinThread.Start(numbers);
             serachMaxThread.Start(numbers);
             serachAvgThread.Start(numbers);
+        }
+
+        //Задание 5
+        static void Task5()
+        {
+            
         }
 
         static void AnyKey()
