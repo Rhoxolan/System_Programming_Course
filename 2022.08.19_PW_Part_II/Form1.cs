@@ -50,7 +50,10 @@ namespace _2022._08._19_PW_Part_II
             serachMaxThread.Start(numbers);
             serachAvgThread.Start(numbers);
 
-            Thread.Sleep(500);
+            serachMinThread.Join(); //Ожидаем завершения потоков
+            serachMaxThread.Join();
+            serachAvgThread.Join();
+
             File.WriteAllText("Text.txt", $"Мин {minVal}, макс {maxVal}, среднее {avgVal}");
         }
     }

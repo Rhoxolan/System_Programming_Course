@@ -155,7 +155,10 @@
             serachMaxThread.Start(numbers);
             serachAvgThread.Start(numbers);
 
-            Thread.Sleep(500);
+            serachMinThread.Join();
+            serachMaxThread.Join();
+            serachAvgThread.Join();
+
             File.WriteAllText("Text.txt", $"Мин {minVal}, макс {maxVal}, среднее {avgVal}");
         }
 
