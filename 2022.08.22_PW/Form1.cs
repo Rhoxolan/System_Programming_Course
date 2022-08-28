@@ -122,10 +122,13 @@ namespace _2022._08._22_PW
 
         private string GetTextInfo(string text)
         {
-            return $"В переданной строке {Regex.Matches(text, @"[ауоыиэяюёеeuoai]", RegexOptions.IgnoreCase).Count} гласных," +
-                $"{Regex.Matches(text, @"[йцкнгшщзхфвпрлджчсмтбqwrtpsdfghjklzxcvbnm]", RegexOptions.IgnoreCase).Count} согласных и" +
-                $""; //Дописать и проверить
+            return $"В переданной строке {Regex.Matches(text, @"[ауоыиэяюёеeuoai]", RegexOptions.IgnoreCase).Count} гласных и " +
+                $"{Regex.Matches(text, @"[йцкнгшщзхфвпрлджчсмтбqwrtpsdfghjklzxcvbnm]", RegexOptions.IgnoreCase).Count} согласных";
         }
 
+        private async void button6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(await Task.Run(()=>GetTextInfo(textBox4.Text)));
+        }
     }
 }

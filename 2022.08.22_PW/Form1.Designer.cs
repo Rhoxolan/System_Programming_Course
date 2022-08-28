@@ -47,6 +47,9 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -219,11 +222,41 @@
             this.numericUpDown3.Size = new System.Drawing.Size(63, 23);
             this.numericUpDown3.TabIndex = 18;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(12, 298);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(229, 140);
+            this.textBox4.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 280);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 15);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Задание 8:";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(247, 298);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(120, 65);
+            this.button6.TabIndex = 21;
+            this.button6.Text = "Вывести\r\nинформацию";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.numericUpDown3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.numericUpDown2);
@@ -274,5 +307,8 @@
         private NumericUpDown numericUpDown2;
         private Label label5;
         private NumericUpDown numericUpDown3;
+        private TextBox textBox4;
+        private Label label6;
+        private Button button6;
     }
 }
