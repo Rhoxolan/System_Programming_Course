@@ -40,6 +40,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -150,11 +160,77 @@
             this.textBox3.Size = new System.Drawing.Size(147, 23);
             this.textBox3.TabIndex = 8;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 171);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 15);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Задание 6:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(12, 189);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown1.TabIndex = 13;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(138, 189);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(229, 23);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "Рассчитать факториал числа";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(150, 243);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(217, 23);
+            this.button5.TabIndex = 17;
+            this.button5.Text = "Рассчитать степень числа";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(11, 243);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(64, 23);
+            this.numericUpDown2.TabIndex = 16;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 225);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 15);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Задание 7:";
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(81, 243);
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(63, 23);
+            this.numericUpDown3.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox3);
@@ -169,6 +245,9 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +267,12 @@
         private Label label3;
         private ComboBox comboBox3;
         private TextBox textBox3;
+        private Label label4;
+        private NumericUpDown numericUpDown1;
+        private Button button4;
+        private Button button5;
+        private NumericUpDown numericUpDown2;
+        private Label label5;
+        private NumericUpDown numericUpDown3;
     }
 }

@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace _2022._08._22_PW
 {
     public partial class Form1 : Form
@@ -37,6 +39,7 @@ namespace _2022._08._22_PW
                 textBox.Text += symbol;
             }
         }
+
         private void GenerateRandomSymbolString(object obj)
         {
             int choice = (int)obj;
@@ -96,5 +99,33 @@ namespace _2022._08._22_PW
             thread.Priority = (ThreadPriority)comboBox3.SelectedIndex;
             thread.Start(2);
         }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            int res = await Task.Run(()=> Factorial((int)numericUpDown1.Value));
+            MessageBox.Show(res.ToString());
+        }
+
+        private int Factorial(int n)
+        {
+            if (n == 1)
+                return 1;
+            return n * Factorial(n - 1);
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+            Task<double> taskRes = Task.Run(()=>Math.Pow((double)numericUpDown2.Value, (double)numericUpDown3.Value));
+            double res = await taskRes;
+            MessageBox.Show(res.ToString());
+        }
+
+        private string GetTextInfo(string text)
+        {
+            return $"В переданной строке {Regex.Matches(text, @"[ауоыиэяюёеeuoai]", RegexOptions.IgnoreCase).Count} гласных," +
+                $"{Regex.Matches(text, @"[йцкнгшщзхфвпрлджчсмтбqwrtpsdfghjklzxcvbnm]", RegexOptions.IgnoreCase).Count} согласных и" +
+                $""; //Дописать и проверить
+        }
+
     }
 }
