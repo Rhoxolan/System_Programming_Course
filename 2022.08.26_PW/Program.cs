@@ -24,22 +24,12 @@
                 int[] arr = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
                 Task task1 = Task.Run(() => AddRandomValuesToArray(arr));
                 Task<(int min, int max)> task2 = Task.Run(() => ReturnMinMaxFromArray(arr));
-                mutexObj2.WaitOne();
-                try
-                {
-                    //Ты тут. Разобраться
-                    foreach (var item in arr)
-                    {
-                        Console.Write(item.ToString() + " ");
-                    }
-                    Console.WriteLine();
-                }
-                finally
-                {
-                    mutexObj2.ReleaseMutex();
-                }
                 Console.WriteLine($"Min - {task2.Result.min}, Max - {task2.Result.max}");
                 Task.WaitAll(new Task[2] { task1, task2 });
+                foreach (var item in arr)
+                {
+                    Console.Write(item.ToString() + " ");
+                }
                 Console.WriteLine("\n\n");
             }
         }
