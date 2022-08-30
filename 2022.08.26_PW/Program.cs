@@ -2,13 +2,44 @@
 {
     internal class Program
     {
-        Mutex mutexObj = new();
+        static Mutex mutexObj = new();
 
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            //Задание 1
+            {
+                Thread thread1 = new(Print20Symbols);
+                Thread thread2 = new(Print10Symbols);
+                thread1.Start();
+                Thread.Sleep(1);
+                thread2.Start();
+                Console.WriteLine("\n\n"); //Посмотреть как решал это
+            }
+
+            //Задание 2
+            {
+
+            }
         }
 
-        //Ты тут. Просмотреть статью на метаните и написать первое задание.
+        static void Print20Symbols()
+        {
+            mutexObj.WaitOne();
+            for (int i = 0; i < 21; i++)
+            {
+                Console.WriteLine($"Поток {Environment.CurrentManagedThreadId} отображает {i}");
+            }
+            mutexObj.ReleaseMutex();
+        }
+
+        static void Print10Symbols()
+        {
+            mutexObj.WaitOne();
+            for (int i = 11 - 1; i >= 0; i--)
+            {
+                Console.WriteLine($"Поток {Environment.CurrentManagedThreadId} отображает {i}");
+            }
+            mutexObj.ReleaseMutex();
+        }
     }
 }
