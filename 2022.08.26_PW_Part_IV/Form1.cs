@@ -79,7 +79,7 @@ namespace _2022._08._26_PW_Part_IV
             for (int i = 1; i < 11; i++)
             {
                 list3.Add(i);
-                Thread.Sleep(1000);
+                Thread.Sleep(10);
             }
             Task task1 = Task.Run(() => AddRandomValuesToArray(list3));
             Task<(int min, int max)> task2 = Task.Run(() => ReturnMinMaxFromArray(list3));
