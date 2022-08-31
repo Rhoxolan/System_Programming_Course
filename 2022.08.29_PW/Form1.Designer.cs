@@ -72,7 +72,7 @@
             this.textBox1.Location = new System.Drawing.Point(117, 71);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(48, 23);
+            this.textBox1.Size = new System.Drawing.Size(57, 23);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
@@ -81,7 +81,7 @@
             this.textBox2.Location = new System.Drawing.Point(117, 115);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(48, 23);
+            this.textBox2.Size = new System.Drawing.Size(57, 23);
             this.textBox2.TabIndex = 5;
             // 
             // label3
@@ -108,7 +108,7 @@
             this.textBox3.Location = new System.Drawing.Point(117, 159);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(48, 23);
+            this.textBox3.Size = new System.Drawing.Size(57, 23);
             this.textBox3.TabIndex = 7;
             // 
             // button1

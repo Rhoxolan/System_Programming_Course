@@ -61,7 +61,6 @@ namespace _2022._08._29_PW
             waitHandler.WaitOne();
             try
             {
-                Thread.Sleep(2000);
                 return list.Max();
             }
             finally
