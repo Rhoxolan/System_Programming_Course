@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace _2022._08._29_PW_Part_II
 {
     public partial class Form1 : Form
     {
-        //Примечание - в данном случае лучше применять другой синхронизационный примитив, например AutoResetEvent, так как важна очередность запуска потоков. Пример правильного выполнения
-        //подобной задачи в Part_I.
+        AutoResetEvent waitHandler1; //Дополнительно создаём waitHandler для контроля очередности запуска блоков кода в потоках. Подробнее - см. комментарий в Form1.cs 2022.08.29_PW
+        AutoResetEvent waitHandler2; //Также см. https://www.cyberforum.ru/csharp-net/thread3017660.html
 
         int[] arr;
 
@@ -16,14 +17,16 @@ namespace _2022._08._29_PW_Part_II
         {
             InitializeComponent();
             arr = new int[10];
+            waitHandler1 = new(false);
+            waitHandler2 = new(false);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            waitHandler1.Reset();
             string path = "Text.txt";
             Task.Run(() => OpenFile(path));
             Task.Run(() => EditFile(path));
-
         }
 
         private void OpenFile(string path)
@@ -35,10 +38,12 @@ namespace _2022._08._29_PW_Part_II
                 int sentenceCount = text.Split(new string[] { ".", "!", "?", "..." }, StringSplitOptions.RemoveEmptyEntries).Length;
                 RefreshTextBox(textBox2, sentenceCount.ToString());
             }
+            waitHandler1.Set();
         }
 
         private void EditFile(string path)
         {
+            waitHandler1.WaitOne();
             lock (path)
             {
                 StringBuilder sb = new(File.ReadAllText(path));
@@ -53,6 +58,7 @@ namespace _2022._08._29_PW_Part_II
                 string text = File.ReadAllText(path);
                 RefreshTextBox(textBox3, text);
             }
+            waitHandler1.Set();
         }
 
         private void RefreshTextBox(TextBox tB, string text)
@@ -82,6 +88,7 @@ namespace _2022._08._29_PW_Part_II
 
         private void button4_Click(object sender, EventArgs e)
         {
+            waitHandler2.Reset();
             textBox4.Text = String.Empty;
             Random random = new Random();
             for (int i = 0; i < arr.Length; i++)
@@ -102,6 +109,7 @@ namespace _2022._08._29_PW_Part_II
             finally
             {
                 Monitor.Exit(array);
+                waitHandler2.Set();
             }
         }
 
@@ -112,6 +120,7 @@ namespace _2022._08._29_PW_Part_II
 
         private void FindTheNumber(int[] array)
         {
+            waitHandler2.WaitOne();
             Monitor.Enter(array);
             try
             {
@@ -128,6 +137,7 @@ namespace _2022._08._29_PW_Part_II
             finally
             {
                 Monitor.Exit(array);
+                waitHandler2.Set();
             }
         }
 
