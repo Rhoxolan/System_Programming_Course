@@ -6,7 +6,7 @@ namespace _2022._08._29_PW
     public partial class Form1 : Form
     {
         List<int> list;
-        ManualResetEvent waitHandler;
+        AutoResetEvent waitHandler;
 
         public Form1()
         {
