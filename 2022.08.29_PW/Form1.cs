@@ -6,7 +6,7 @@ namespace _2022._08._29_PW
     public partial class Form1 : Form
     {
         List<int> list;
-        AutoResetEvent waitHandler;
+        ManualResetEvent waitHandler;
 
         public Form1()
         {
@@ -34,7 +34,6 @@ namespace _2022._08._29_PW
         {
             list.Clear();
             Random random = new();
-            Thread.Sleep(1000);
             for (int i = 0; i < 1000; i++)
             {
                 list.Add(random.Next(0, 5001));
