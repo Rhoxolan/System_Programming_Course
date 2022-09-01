@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace _2022._08._29_PW_Part_II
 {
     public partial class Form1 : Form
     {
+        //Примечание - в данном случае лучше применять другой синхронизационный примитив, например AutoResetEvent, так как важна очередность запуска потоков. Пример правильного выполнения
+        //подобной задачи в Part_I.
+
         int[] arr;
 
         public Form1()
@@ -19,7 +21,7 @@ namespace _2022._08._29_PW_Part_II
         private void button1_Click(object sender, EventArgs e)
         {
             string path = "Text.txt";
-            Task.Run(() => OpenFile(path)); //Подумать, как можно исправить момент с запуском сразу другого потока
+            Task.Run(() => OpenFile(path));
             Task.Run(() => EditFile(path));
 
         }
@@ -57,7 +59,7 @@ namespace _2022._08._29_PW_Part_II
         {
             if (tB.InvokeRequired)
             {
-                tB.Invoke(()=>RefreshTextBox(tB, text));
+                tB.Invoke(() => RefreshTextBox(tB, text));
             }
             else
             {
@@ -86,28 +88,47 @@ namespace _2022._08._29_PW_Part_II
             {
                 arr[i] = random.Next(0, 101);
             }
-            Task.Run(()=> SortArray(arr));
+            Task.Run(() => SortArray(arr));
             RefreshListBox();
         }
 
-        private void SortArray(int[] arr)
+        private void SortArray(int[] array)
         {
-            Array.Sort(arr);
+            Monitor.Enter(array);
+            try
+            {
+                Array.Sort(array);
+            }
+            finally
+            {
+                Monitor.Exit(array);
+            }
         }
-
-        //Прочитать за монитор и сделать задание
 
         private void button5_Click(object sender, EventArgs e)
         {
-            foreach (var i in arr)
+            Task.Run(() => FindTheNumber(arr));
+        }
+
+        private void FindTheNumber(int[] array)
+        {
+            Monitor.Enter(array);
+            try
             {
-                if(i == (int)numericUpDown1.Value)
+                foreach (var i in array)
                 {
-                    textBox4.Text = "Да";
-                    return;
+                    if (i == (int)numericUpDown1.Value)
+                    {
+                        RefreshTextBox(textBox4, "Да");
+                        return;
+                    }
                 }
+                RefreshTextBox(textBox4, "Нет");
             }
-            textBox4.Text = "Нет";
+            finally
+            {
+                Monitor.Exit(array);
+            }
         }
 
         private void RefreshListBox()
