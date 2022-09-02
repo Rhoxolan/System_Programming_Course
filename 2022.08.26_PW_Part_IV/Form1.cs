@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 
 namespace _2022._08._26_PW_Part_IV
 {
@@ -7,6 +8,8 @@ namespace _2022._08._26_PW_Part_IV
     {
         Mutex mutexObj1;
         Mutex mutexObj2;
+        AutoResetEvent waitHandler1; //Дополнительно создаём waitHandler для контроля очередности запуска блоков кода в потоках. Подробнее - см. комментарий в Form1.cs 2022.08.29_PW
+        AutoResetEvent waitHandler2;
         BindingList<int> list1;
         BindingList<int> list2;
         BindingList<int> list3;
@@ -16,6 +19,8 @@ namespace _2022._08._26_PW_Part_IV
             InitializeComponent();
             mutexObj1 = new();
             mutexObj2 = new();
+            waitHandler1 = new(false);
+            waitHandler2 = new(false);
             list1 = new();
             list2 = new();
             list3 = new();
@@ -30,6 +35,7 @@ namespace _2022._08._26_PW_Part_IV
 
         private void Print20Symbols()
         {
+            //Thread.Sleep(1000);
             mutexObj1.WaitOne();
             try
             {
@@ -42,11 +48,13 @@ namespace _2022._08._26_PW_Part_IV
             finally
             {
                 mutexObj1.ReleaseMutex();
+                waitHandler1.Set();
             }
         }
 
         private void Print10Symbols()
         {
+            waitHandler1.WaitOne();
             mutexObj1.WaitOne();
             try
             {
@@ -59,22 +67,24 @@ namespace _2022._08._26_PW_Part_IV
             finally
             {
                 mutexObj1.ReleaseMutex();
+                waitHandler1.Set();
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            waitHandler1.Reset();
             list1.Clear();
             list2.Clear();
             Thread thread1 = new(Print20Symbols);
             Thread thread2 = new(Print10Symbols);
             thread1.Start();
-            Thread.Sleep(1);
             thread2.Start();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            waitHandler2.Reset();
             list3.Clear();
             for (int i = 1; i < 11; i++)
             {
@@ -89,6 +99,7 @@ namespace _2022._08._26_PW_Part_IV
 
         private void AddRandomValuesToArray(object obj)
         {
+            //Thread.Sleep(1000);
             mutexObj2.WaitOne();
             try
             {
@@ -103,11 +114,13 @@ namespace _2022._08._26_PW_Part_IV
             finally
             {
                 mutexObj2.ReleaseMutex();
+                waitHandler2.Set();
             }
         }
 
         private (int, int) ReturnMinMaxFromArray(object obj)
         {
+            waitHandler2.WaitOne();
             mutexObj2.WaitOne();
             try
             {
@@ -116,6 +129,7 @@ namespace _2022._08._26_PW_Part_IV
             finally
             {
                 mutexObj2.ReleaseMutex();
+                waitHandler2.Set();
             }
         }
     }
