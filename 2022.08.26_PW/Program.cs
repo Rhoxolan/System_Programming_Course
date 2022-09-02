@@ -1,18 +1,23 @@
-﻿namespace _2022._08._26_PW
+﻿using System.Threading;
+
+namespace _2022._08._26_PW
 {
     internal class Program
     {
         static Mutex mutexObj = new();
         static Mutex mutexObj2 = new();
 
+        static AutoResetEvent waitHandler = new(false); //Дополнительно создаём waitHandler для контроля очередности запуска блоков кода в потоках. Подробнее - см. комментарий в Form1.cs 2022.08.29_PW
+        static AutoResetEvent waitHandler2 = new(false);
+
         static void Main()
         {
             //Задание 1
             {
+                waitHandler.Reset();
                 Thread thread1 = new(Print20Symbols);
                 Thread thread2 = new(Print10Symbols);
                 thread1.Start();
-                Thread.Sleep(1);
                 thread2.Start();
                 thread1.Join();
                 thread2.Join();
@@ -21,6 +26,7 @@
 
             //Задание 2,3
             {
+                waitHandler2.Reset();
                 int[] arr = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
                 Task task1 = Task.Run(() => AddRandomValuesToArray(arr));
                 Task<(int min, int max)> task2 = Task.Run(() => ReturnMinMaxFromArray(arr));
@@ -36,6 +42,7 @@
 
         static void Print20Symbols()
         {
+            //Thread.Sleep(1000);
             mutexObj.WaitOne();
             try
             {
@@ -47,11 +54,13 @@
             finally
             {
                 mutexObj.ReleaseMutex();
+                waitHandler.Set();
             }
         }
 
         static void Print10Symbols()
         {
+            waitHandler.WaitOne();
             mutexObj.WaitOne();
             try
             {
@@ -63,11 +72,13 @@
             finally
             {
                 mutexObj.ReleaseMutex();
+                waitHandler.Set();
             }
         }
 
         static void AddRandomValuesToArray(object obj)
         {
+            //Thread.Sleep(1000);
             mutexObj2.WaitOne();
             //Thread.Sleep(1000);
             try
@@ -82,11 +93,13 @@
             finally
             {
                 mutexObj2.ReleaseMutex();
+                waitHandler2.Set();
             }
         }
 
         static (int, int) ReturnMinMaxFromArray(object obj)
         {
+            waitHandler2.WaitOne();
             mutexObj2.WaitOne();
             try
             {
@@ -95,6 +108,7 @@
             finally
             {
                 mutexObj2.ReleaseMutex();
+                waitHandler2.Set();
             }
         }
     }
