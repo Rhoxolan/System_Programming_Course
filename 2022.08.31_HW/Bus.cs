@@ -17,14 +17,20 @@
             this.capacity = capacity;
         }
 
-        public void TakePeople(int People)
+        public int TakePeople(ref int People)
         {
             if(capacity > People)
             {
+                int takenPeople = People;
                 People = 0;
-                return;
+                return takenPeople;
+            }
+            else if (People == 0)
+            {
+                return 0;
             }
             People -= capacity;
+            return capacity;
         }
     }
 }
