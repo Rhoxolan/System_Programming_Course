@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-
 namespace _2022._09._02_PW
 {
     public partial class Form1 : Form
@@ -34,30 +32,33 @@ namespace _2022._09._02_PW
             return true;
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            listBox1.DataSource = null;
             listBox1.Items.Clear();
-            await Task.Run(() => { Parallel.For(1, 1000, (i) => { if (IsSimple(i)) { AddToListBox(listBox1, i); } }); });
+            List<int> ints = new();
+            Task.Run(() => { Parallel.For(1, 1000, (i) => { if (IsSimple(i)) { ints.Add(i); } }); }).Wait();
+            listBox1.DataSource = ints;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            listBox2.DataSource = null;
             listBox2.Items.Clear();
             int counter = 0;
-            Task.WaitAll(Task.Run(() => { Parallel.For((int)numericUpDown1.Value, (int)numericUpDown2.Value, (i) => { if (IsSimple(i)) { AddToListBox(listBox2, i); counter++; } }); }));
+            List<int> ints = new();
+            Task.Run(() =>
+            {
+                Parallel.For((int)numericUpDown1.Value, (int)numericUpDown2.Value, (i) =>
+                {
+                    if (IsSimple(i))
+                    {
+                        ints.Add(i); counter++;
+                    }
+                });
+            }).Wait();
+            listBox2.DataSource = ints;
             textBox4.Text = counter.ToString();
-        }
-
-        private void AddToListBox(ListBox listBox, object value)
-        {
-            if (listBox.InvokeRequired)
-            {
-                listBox.Invoke(() => AddToListBox(listBox, value));
-            }
-            else
-            {
-                listBox.Items.Add(value);
-            }
         }
     }
 }
