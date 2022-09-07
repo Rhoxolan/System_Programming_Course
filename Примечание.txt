@@ -25,3 +25,4 @@ HW (Console) - приложение-имитация работы автобус
 
 02.09.2022 - Паралельне програмування
 PW (WinForms) - проработка Parallel.Invoke, Parallel.For и Task.ContinueWith.
+HW (WinForms) - проработка Parallel.Invoke.

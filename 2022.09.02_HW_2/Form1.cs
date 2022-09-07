@@ -18,8 +18,8 @@ namespace _2022._09._02_HW_2
                 if(!Directory.GetFiles(textBox2.Text).Contains(Path.GetFileName(file)))
                 {
                     File.Move(file, textBox2.Text + $"/{Path.GetFileName(file)}");
-                    textBox1.Text += $"Фаил {Path.GetFileName(file)} c директории {Path.GetDirectoryName(file)} успешно перемещено по новому адресу " +
-                        $"{textBox2.Text}{Path.GetFileName(file)}"; //Проверить
+                    textBox3.Text += $"Фаил {Path.GetFileName(file)} c директории {Path.GetDirectoryName(file)} успешно перемещено по новому адресу " +
+                        $"{textBox2.Text}{Path.GetFileName(file)}{Environment.NewLine}";
                 }
             }
         }
