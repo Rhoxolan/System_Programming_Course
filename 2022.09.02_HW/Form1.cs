@@ -6,5 +6,10 @@ namespace _2022._09._02_HW
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
+        }
     }
 }
