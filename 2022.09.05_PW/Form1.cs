@@ -102,5 +102,16 @@ namespace _2022._09._05_PW
             }
             textBox3.Text = counts.Max().ToString();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new();
+            ofd.Multiselect = true;
+            ofd.Filter = "Text Files(*.txt)|*.txt";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
