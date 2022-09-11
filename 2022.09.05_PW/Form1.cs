@@ -74,5 +74,33 @@ namespace _2022._09._05_PW
             }
             textBox2.Text = counts.Max().ToString();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<int> list = new();
+            OpenFileDialog ofd = new();
+            ofd.Filter = "Text Files(*.txt)|*.txt";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string line in File.ReadLines(ofd.FileName))
+                {
+                    list.Add(Convert.ToInt32(line));
+                }
+            }
+            var uniquelist = list.AsParallel().AsOrdered().Select(i => i).ToList(); //Method syntax
+            List<int> counts = new() { 0 };
+            for (int i = 0; i < uniquelist.Count; i++)
+            {
+                if (uniquelist[i] > 0)
+                {
+                    counts[^1]++;
+                }
+                else
+                {
+                    counts.Add(0);
+                }
+            }
+            textBox3.Text = counts.Max().ToString();
+        }
     }
 }

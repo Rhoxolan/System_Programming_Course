@@ -36,6 +36,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -106,13 +110,52 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Задание 1:";
+            this.label4.Text = "Задание 2:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(470, 71);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(64, 23);
+            this.textBox3.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(470, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(246, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Максимальная длина последовательности:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(470, 27);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Найти файл";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(470, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 15);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Задание 3:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(733, 450);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
@@ -138,5 +181,9 @@
         private Label label3;
         private Button button2;
         private Label label4;
+        private TextBox textBox3;
+        private Label label5;
+        private Button button3;
+        private Label label6;
     }
 }
