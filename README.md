@@ -1,1 +1,1 @@
-Практические работы и домашние задания по предмету "Системное программирование" (15.08.2022 - 05.09.2022) в Компьютерной Академии ШАГ г. Кривой Рог.
+Practical works and homeworks on the subject "System programming" (15.08.2022 - 05.09.2022) at STEP IT Academy in Kryvyi Rih.
